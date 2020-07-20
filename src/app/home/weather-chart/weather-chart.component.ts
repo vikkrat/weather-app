@@ -36,19 +36,19 @@ export class WeatherChartComponent implements OnInit {
         height: 230,
         type: 'area',
         zoom: false,
-        toolbar: { tools: { download: false } },
+        toolbar: { tools: { download: true } },
       },
       fill: {
         type: 'gradient',
         gradient: {
           shadeIntensity: 1,
-          opacityFrom: 0.3,
+          opacityFrom: 0.7,
           opacityTo: 0.9,
-          stops: [0, 70, 100]
+          stops: [0, 100]
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: true
       },
       colors: this.colors,
       markers: {

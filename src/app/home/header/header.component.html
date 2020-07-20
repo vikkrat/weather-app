@@ -9,5 +9,4 @@
   <span *ngIf="user">Logged in as: <strong>{{ user?.email }}</strong> </span>
   <mat-icon *ngIf="user" style="margin: 0 8px">account_circle</mat-icon>
   <button *ngIf="user" mat-raised-button (click)="logout()">Sing out</button>
-
 </mat-toolbar>

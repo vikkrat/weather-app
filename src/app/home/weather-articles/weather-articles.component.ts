@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {WeatherArticlesService} from './weather-articles.service';
-import {DomSanitizer} from '@angular/platform-browser';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { WeatherArticlesService } from './weather-articles.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weather-articles',
