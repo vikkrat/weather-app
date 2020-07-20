@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+//My pallet
+$pink-lace: #FECEE9;
+$plum-web: #EB9FEF;
+$independence: #545677;
+$oxford-blue: #03254E;
+$rich-black: #011C27;
+
+//My Font Style
+@mixin font-app-on-light {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: $rich-black;
+}
+
+@mixin font-app-on-dark {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: $pink-lace;
+}
+
+@mixin title {
+  font-size: 23px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+}
+
+@mixin sub-title {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+html, body { height: 100%; }
+
+body {
+  @include font-app-on-light;
+  margin: 0;
+  background: linear-gradient(to top, $pink-lace, $plum-web, $independence) no-repeat fixed;
+}
+
+//---------Login & Registration---------
+.login {
+  width: 100%;
+  height: calc(100vh - 85px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-container {
+    width: 45%;
+    min-width: 300px;
+    margin: 0;
+    padding: 16px;
+    border-radius: 8px;
+    background: #ffffff;
+    & form {
+      width: 100%;
+    }
+  }
+  &-greeting {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+    @include font-app-on-light;
+    @include title;
+    & span {
+      @include font-app-on-light;
+      @include sub-title;
+    }
+  }
+  &-form {
+    &-control {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      &-btn {
+        width: 100%;
+        height: 46px;
+        margin-bottom: 15px;
+        padding: 10px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background: transparent;
+        border: 1px solid #637daa;
+        border-radius: 4px;
+        color: $independence;
+        & span svg {
+          width: 15px;
+          margin-right: 15px;
+          color: $independence;
+        }
+      }
+      &-input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: transparent;
+        color: #637daa;
+        &::placeholder {
+          color: #637daa;
+        }
+      }
+      &-errors {
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: right;
+        background: $pink-lace;
+        border-radius: 2px;
+        & .text-danger {
+          font-size: 12px;
+          color: red;
+        }
+      }
+      &-invalid {
+        border: 1px solid $plum-web;
+        color: $plum-web;
+        & span svg {
+          color: $plum-web;
+        }
+      }
+    }
+    &-submit {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      &-btn {
+        width: 100%;
+        height: 46px;
+        margin-bottom: 15px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $oxford-blue;
+        border: 1px solid $oxford-blue;
+        border-radius: 4px;
+        @include font-app-on-dark;
+        & span svg {
+          height: 15px;
+          margin-right: 15px;
+          color: $pink-lace;
+        }
+        &:disabled {
+          cursor: not-allowed;
+        }
+        &:hover {
+          opacity: .7;
+        }
+      }
+    }
+  }
+}

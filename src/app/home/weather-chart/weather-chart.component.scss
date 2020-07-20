@@ -1,0 +1,8 @@
+@import 'src/styles';
+
+::ng-deep .apexcharts-text tspan {
+  @include font-app-on-light;
+  font-size: 10px;
+  font-weight: 600;
+  color: $independence
+}

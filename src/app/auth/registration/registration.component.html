@@ -1,0 +1,183 @@
+<div class="login">
+    <div class="login-container">
+      <div class="login-greeting">
+        Join Weather App! <br>
+        <span>Sign up to know the weather forecast for your city</span>
+      </div>
+      <form [formGroup]="myForm" novalidate>
+        <div class="login-form-control">
+          <button class="login-form-control-btn">
+            <span>
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
+            </span>
+            <input [class.is-invalid]="userEmail.invalid && userEmail.touched" name="email" formControlName="userEmail" placeholder="Email" type="email" class="login-form-control-input">
+          </button>
+          <div class="login-form-control-errors" *ngIf="userEmail.invalid && userEmail.touched">
+            <small class="text-danger" *ngIf="userEmail.errors?.required">
+              Email is required!
+            </small>
+            <small class="text-danger"  *ngIf="userEmail.errors?.email">
+              Email <strong>{{userEmail.value}}</strong> is not correct
+            </small>
+          </div>
+
+          <button class="login-form-control-btn"
+                  [ngClass]="{'login-form-control-invalid': userPassword.invalid && userPassword.touched}">
+            <span>
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="key" class="svg-inline--fa fa-key fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M512 176.001C512 273.203 433.202 352 336 352c-11.22 0-22.19-1.062-32.827-3.069l-24.012 27.014A23.999 23.999 0 0 1 261.223 384H224v40c0 13.255-10.745 24-24 24h-40v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24v-78.059c0-6.365 2.529-12.47 7.029-16.971l161.802-161.802C163.108 213.814 160 195.271 160 176 160 78.798 238.797.001 335.999 0 433.488-.001 512 78.511 512 176.001zM336 128c0 26.51 21.49 48 48 48s48-21.49 48-48-21.49-48-48-48-48 21.49-48 48z"></path></svg>
+            </span>
+            <input name="password" formControlName="userPassword" placeholder="Password" type="password" class="login-form-control-input">
+          </button>
+          <div class="login-form-control-errors" *ngIf="userPassword.invalid && userPassword.touched">
+            <small class="text-danger" *ngIf="userPassword.errors?.required">
+              Password is required!
+            </small>
+            <small class="text-danger"  *ngIf="userPassword.errors?.minlength">
+              Password must contain at least 6 characters! <br> Now You have entered: {{userPassword.value.length}}
+            </small>
+            <small class="text-danger"  *ngIf="userPassword.errors?.maxlength">
+              Password must not exceed 100 characters! <br> Now You have entered: {{userPassword.value.length}}
+            </small>
+          </div>
+
+          <button class="login-form-control-btn"
+                  [ngClass]="{'login-form-control-invalid': confPassword.invalid && confPassword.touched}">
+            <span>
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="key" class="svg-inline--fa fa-key fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M512 176.001C512 273.203 433.202 352 336 352c-11.22 0-22.19-1.062-32.827-3.069l-24.012 27.014A23.999 23.999 0 0 1 261.223 384H224v40c0 13.255-10.745 24-24 24h-40v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24v-78.059c0-6.365 2.529-12.47 7.029-16.971l161.802-161.802C163.108 213.814 160 195.271 160 176 160 78.798 238.797.001 335.999 0 433.488-.001 512 78.511 512 176.001zM336 128c0 26.51 21.49 48 48 48s48-21.49 48-48-21.49-48-48-48-48 21.49-48 48z"></path></svg>
+            </span>
+            <input name="password" formControlName="confPassword" placeholder="Confirm password" type="password" class="login-form-control-input">
+          </button>
+          <div class="login-form-control-errors">
+            <small class="text-danger" *ngIf="confPassword.invalid && confPassword.touched && confPassword.errors?.required">
+              Confirm password is required
+            </small>
+            <small class="text-danger" *ngIf="myForm.errors?.misMatch">
+              Passwords doesn't match
+            </small>
+          </div>
+        </div>
+        <div class="login-form-submit" (click)="register()">
+          <button class="login-form-submit-btn" type="submit" [disabled]="myForm.invalid">
+            Create your free account
+          </button>
+
+          <button class="login-form-submit-btn" (click)="registerWithGoogle()">
+          <span>
+            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" class="svg-inline--fa fa-google fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+          </span>
+            <span>Continue with Google</span>
+          </button>
+
+        </div>
+      </form>
+      <hr>
+      <div class="login-greeting">
+        <span>Already registered? <span style="color: #EB9FEF; cursor: pointer" [routerLink]="['/login']">Sign in</span></span>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="row">-->
+<!--    <div class="col-12">-->
+<!--      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">-->
+<!--  -->
+<!--        <div class="row" *ngIf="authError">-->
+<!--          <div class="col-12 alert alert-danger">{{ authError?.message }}</div>-->
+<!--        </div>-->
+<!--  -->
+<!--        <div class="row">-->
+<!--          <div class="col-12">-->
+<!--            <label for="email">Email</label>-->
+<!--            <input ngModel #email="ngModel" name="email" type="email" class="form-control">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--  -->
+<!--        <div class="row">-->
+<!--          <div class="col-12">-->
+<!--            <label for="password">Password</label>-->
+<!--            <input ngModel #password="ngModel" name="password" type="password" class="form-control">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--  -->
+<!--        <div class="row mt-2">-->
+<!--          <div class="col-12">-->
+<!--            <a href="/register">Click here to register</a>-->
+<!--          </div>-->
+<!--  -->
+<!--          <div class="col-12">-->
+<!--            <button class="btn btn-primary" type="submit">Login</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--  -->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+
+
+
+
+
+
+<!--<div class="row mt-4">-->
+<!--    <div class="col-12">-->
+<!--      <h4>User Registration</h4>-->
+<!--    </div>-->
+<!--  -->
+<!--    <div class="col-12">-->
+<!--      <div class="row" *ngIf="authError">-->
+<!--        <div class="col-12 alert alert-danger">-->
+<!--          {{ authError?.message }}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-6 mb-2">-->
+<!--            <label for="firstName">First name</label>-->
+<!--            <input ngModel #firstname="ngModel" name="firstName" type="text" class="form-control" id="firstName">-->
+<!--          </div>-->
+<!--          <div class="col-md-6 mb-2">-->
+<!--            <label for="lastName">Last name</label>-->
+<!--            <input ngModel #lastname="ngModel" name="lastName" type="text" class="form-control" id="lastName" value="">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-12 mb-2">-->
+<!--            <label for="email">Email</label>-->
+<!--            <input ngModel #email="ngModel" name="email" type="email" class="form-control">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-12 mb-2">-->
+<!--              <label for="password">Password</label>-->
+<!--              <input ngModel #password="ngModel" name="password" type="password" class="form-control">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-12 mb-2">-->
+<!--              <label>Confirm Password</label>-->
+<!--              <input name="password" type="password" class="form-control">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-12">-->
+<!--              <button class="btn btn-primary" type="submit">Submit</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->

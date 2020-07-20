@@ -1,0 +1,13 @@
+@import 'src/styles';
+
+::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {
+  position: fixed;
+  top: 0px;
+  @include font-app-on-dark;
+  background: $independence;
+  z-index: 3;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,262 @@
+@import 'src/styles';
+
+@mixin tab-content {
+  width: 68%;
+  padding: 20px;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+table {
+  width: 100%;
+  height: 160px;
+  margin: 20px 0;
+  border-collapse: collapse;
+  border: none;
+  @include font-app-on-light;
+  font-size: 12px;
+  & thead tr td {
+    font-weight: bold;
+  }
+  //& thead tr, tr:nth-of-type(even) {
+  //  background: $plum-web;
+  //}
+  & tr td {
+    width: 11%;
+    border-collapse: collapse;
+    border: none;
+    text-align: center;
+  }
+  & tr td:first-of-type {
+    width: 13%;
+    font-weight: bold;
+    text-align: left;
+  }
+  & img {
+    width: 40px;
+  }
+}
+
+.weather-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  &-viewed {
+    width: 100%;
+    &-content {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+    &-title {
+      width: 100%;
+      margin-bottom: 20px;
+      font-family: "Poppins", sans-serif;
+      color: #011C27;
+      font-size: 23px;
+      line-height: 23px;
+      letter-spacing: 0.25px;
+      text-transform: capitalize;
+    }
+    &-item {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      backface-visibility: hidden;
+      transition: .5s;
+      padding: 20px;
+      @include font-app-on-dark;
+      background: $oxford-blue;
+      color: $pink-lace;
+      text-align: center;
+      border-radius: 8px;
+      & hr {
+        border-top: 1px solid $pink-lace;
+      }
+      &-icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: $plum-web;
+        cursor: pointer;
+      }
+      & img {
+        width: 70%;
+      }
+    }
+  }
+  &-search {
+    width: 100%;
+    margin: 50px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-btn {
+      width: 75%;
+      height: 46px;
+      padding: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background: transparent;
+      border: 1px solid $oxford-blue;
+      border-radius: 4px;
+      color: $oxford-blue;
+      & span svg {
+        width: 15px;
+        margin-right: 15px;
+        color: $oxford-blue;
+      }
+    }
+    &-input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      color: $oxford-blue;
+      &::placeholder {
+        color: $oxford-blue;
+      }
+    }
+  }
+  &-submit-btn{
+    width: 20%;
+    height: 46px;
+    padding: 10px;
+    text-align: center;
+    background: $oxford-blue;
+    border: 1px solid $oxford-blue;
+    border-radius: 4px;
+    color: $pink-lace;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  &-city {
+    width: 30%;
+    min-height: 560px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background: #ffffff;
+    text-align: center;
+    &-name {
+      @include font-app-on-light;
+      @include  title;
+    }
+    &-date {
+      @include font-app-on-light;
+      @include  sub-title;
+    }
+    &-condition {
+      @include font-app-on-light;
+      @include  sub-title;
+      &-icon {
+        width: 100%;
+        margin: 15px 0;
+        background: $plum-web;
+        border-radius: 8px;
+        & img {
+          width: 80%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+  &-tabs {
+    @include tab-content;
+    &-today {
+      width: 100%;
+      &-cards {
+        width: 100%;
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &-item {
+          width: 31%;
+          padding: 20px;
+          border-radius: 8px;
+          background: $plum-web;
+          &-title {
+            @include font-app-on-light;
+            font-size: 16px;
+            text-align: justify-all;
+            & span svg {
+              height: 20px;
+              margin-right: 12px;
+              color: $oxford-blue;
+            }
+          }
+          &-value {
+            @include font-app-on-light;
+            @include title;
+            font-size: 30px;
+            text-align: center;
+            & span {
+              @include sub-title;
+            }
+          }
+        }
+      }
+      &-chart {
+        width: 100%;
+        margin-top: 20px;
+        &-title {
+          @include font-app-on-light;
+          @include sub-title;
+          font-weight: bold;
+        }
+      }
+    }
+    &-week {
+      width: 100%;
+      &-chart-title {
+        @include font-app-on-light;
+        @include sub-title;
+        font-weight: bold;
+      }
+    }
+  }
+
+}
+
+.card {
+  min-width: 150px;
+  min-height: 165px;
+  margin: 5px;
+  background: transparent;
+  border: none;
+  transition: .5s;
+  &:hover .card-front {transform: rotateX(-180deg)}
+  &:hover .card-back {transform: rotateX(0deg)}
+  &-front {
+    transform: rotateX(0deg);
+    cursor: pointer;
+  }
+  &-back {
+    transform: rotateX(180deg);
+  }
+}
+
+
+@media only screen and (max-width: 980px) {
+  .weather-details {
+    flex-direction: column;
+    &-city {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    &-tabs {
+      width: 100%;
+    }
+  }
+}
